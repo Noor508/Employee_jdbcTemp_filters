@@ -54,9 +54,5 @@ public class EmployeeRepository {
         return jdbcTemplate.update(sql, id);
     }
 
-    public Employee findByEmail(String email) {
-        String sql = "SELECT * FROM employees WHERE email = ?";
-        return jdbcTemplate.queryForObject(sql, this::mapRowToEmployee, email);
-    }
 
 }

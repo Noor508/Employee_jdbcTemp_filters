@@ -18,15 +18,14 @@ public class JwtUtil {
     public JwtUtil() {
         this.SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512); // Generate a secure 512-bit key
     }
-    public String generateToken(String employeeId) {
+    public String generateToken(String username) {
         return Jwts.builder()
-                .setSubject(employeeId)
+                .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
-
 
     public String extractUsername(String token) {
         return Jwts.parser()
